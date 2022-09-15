@@ -382,6 +382,7 @@ __DL__jQueryinterval = setInterval(function(){
                         'comparePrice'    : {{product.compare_at_price_max | money_without_currency | remove: "," | json}},
                         'categories'      : {{product.collections | map:"title" | json}},
                         'currentCategory' : {{collection.title | json}},
+                        'currency'        : {{shop.currency | json}},
                         'productOptions'  : {
                             {% for option in product.options_with_values %}
                             {% for value in option.values %}
@@ -426,6 +427,7 @@ __DL__jQueryinterval = setInterval(function(){
                         'price'    : {{line_item.price | money_without_currency | remove: "," | json}},
                         'quantity' : {{line_item.quantity | json}}
                     },{% endfor %}],
+                    'cart_total':{{ cart.total_price | money_without_currency | remove:',' | json }},
                     'pageType' : 'Cart',
                     'event'    : 'Cart'
                 };
