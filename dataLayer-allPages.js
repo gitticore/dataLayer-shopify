@@ -324,11 +324,11 @@ __DL__jQueryinterval = setInterval(function(){
         var product = {
             'products': [
                 {% for product in collection.products %}{
-                    'id'              : {{product.id | json}},
+                    'item_id'         : {{product.id | json}},
                     'sku'             : {{product.selected_or_first_available_variant.sku | json}},
                     'variantId'       : {{product.selected_or_first_available_variant.id | json}},
                     'productType'     : {{product.type | json}},
-                    'name'            : {{product.title | json}},
+                    'item_name'       : {{product.title | json}},
                     'price'           : {{product.price | money_without_currency | remove: "," | json}},
                     'imageURL'        : "https:{{product.featured_image.src|img_url:'grande'}}", 
                     'productURL'      : '{{shop.secure_url}}{{product.url}}',
@@ -369,11 +369,11 @@ __DL__jQueryinterval = setInterval(function(){
                 sku = '';
                 var product = {
                     'products': [{
-                        'id'              : {{product.id | json}},
+                        'item_id'         : {{product.id | json}},
                         'sku'             : {{product.selected_or_first_available_variant.sku | json}},
                         'variantId'       : {{product.selected_or_first_available_variant.id | json}},
                         'productType'     : {{product.type | json}},
-                        'name'            : {{product.title | json}},
+                        'item_name'       : {{product.title | json}},
                         'price'           : {{product.price | money_without_currency | remove: "," | json}},
                         'description'     : {{product.description | strip_newlines | strip_html | json}},
                         'imageURL'        : "https:{{product.featured_image.src|img_url:'grande'}}", 
@@ -420,10 +420,10 @@ __DL__jQueryinterval = setInterval(function(){
                 {% if template contains 'cart' %}
                 var cart = {
                     'products':[{% for line_item in cart.items %}{
-                        'id'       : {{line_item.product_id | json}},
+                        'item_id'  : {{line_item.product_id | json}},
                         'sku'      : {{line_item.sku | json}},
                         'variant'  : {{line_item.variant_id | json}},
-                        'name'     : {{line_item.title | json}},
+                        'item_name': {{line_item.title | json}},
                         'price'    : {{line_item.price | money_without_currency | remove: "," | json}},
                         'quantity' : {{line_item.quantity | json}}
                     },{% endfor %}],
@@ -448,10 +448,10 @@ __DL__jQueryinterval = setInterval(function(){
                             var removeFromCart = {
                                 'products': __DL__.removeCart.items.map(function (line_item) {
                                     return {
-                                        'id'       : line_item.product_id,
+                                        'item_id'  : line_item.product_id,
                                         'sku'      : line_item.sku,
                                         'variant'  : line_item.variant_id,
-                                        'name'     : line_item.title,
+                                        'item_name': line_item.title,
                                         'price'    : (line_item.price/100),
                                         'quantity' : line_item.quantity
                                     }
@@ -487,10 +487,10 @@ __DL__jQueryinterval = setInterval(function(){
                 {% for line_item in checkout.line_items %}
                 
                 __DL__products.push({
-                    'id'          : {{line_item.product_id | json}},
+                    'item_id'     : {{line_item.product_id | json}},
                     'sku'         : {{line_item.sku | json}},
                     'variantId'   : {{line_item.variant_id | json}},
-                    'name'        : {{line_item.title | json}},
+                    'item_name'   : {{line_item.title | json}},
                     'productType' : {{line_item.product.type | json}},
                     'price'       : {{line_item.price | money_without_currency | remove: "," | json}},
                     'quantity'    : {{line_item.quantity | json}},
@@ -616,10 +616,10 @@ __DL__jQueryinterval = setInterval(function(){
                                         var cart = {
                                             'products': __DL__.cart.items.map(function (line_item) {
                                                 return {
-                                                    'id'       : line_item.id,
+                                                    'item_id'  : line_item.id,
                                                     'sku'      : line_item.sku,
                                                     'variant'  : line_item.variant_id,
-                                                    'name'     : line_item.title,
+                                                    'item_name': line_item.title,
                                                     'price'    : (line_item.price/100),
                                                     'quantity' : line_item.quantity
                                                 }
@@ -659,10 +659,10 @@ __DL__jQueryinterval = setInterval(function(){
                                                             var removeFromCart = {
                                                                 'products': __DL__.removeCart.items.map(function (line_item) {
                                                                     return {
-                                                                        'id'       : line_item.id,
+                                                                        'item_id'  : line_item.id,
                                                                         'sku'      : line_item.sku,
                                                                         'variant'  : line_item.variant_id,
-                                                                        'name'     : line_item.title,
+                                                                        'item_name': line_item.title,
                                                                         'price'    : (line_item.price/100),
                                                                         'quantity' : line_item.quantity
                                                                     }
@@ -689,10 +689,10 @@ __DL__jQueryinterval = setInterval(function(){
                                     var cart = {
                                         'products': __DL__.cart.items.map(function (line_item) {
                                             return {
-                                                'id'       : line_item.id,
+                                                'item_id'  : line_item.id,
                                                 'sku'      : line_item.sku,
                                                 'variant'  : line_item.variant_id,
-                                                'name'     : line_item.title,
+                                                'item_name': line_item.title,
                                                 'price'    : (line_item.price/100),
                                                 'quantity' : line_item.quantity
                                             }
@@ -719,10 +719,10 @@ __DL__jQueryinterval = setInterval(function(){
                                             var cart = {
                                                 'products': __DL__.cart.items.map(function (line_item) {
                                                     return {
-                                                        'id'       : line_item.id,
+                                                        'item_id'  : line_item.id,
                                                         'sku'      : line_item.sku,
                                                         'variant'  : line_item.variant_id,
-                                                        'name'     : line_item.title,
+                                                        'item_name': line_item.title,
                                                         'price'    : (line_item.price/100),
                                                         'quantity' : line_item.quantity
                                                     }
@@ -801,10 +801,10 @@ __DL__jQueryinterval = setInterval(function(){
                                                         var removeFromCart = {
                                                             'products': __DL__.removeCart.items.map(function (line_item) {
                                                                 return {
-                                                                    'id'       : line_item.id,
+                                                                    'item_id'  : line_item.id,
                                                                     'sku'      : line_item.sku,
                                                                     'variant'  : line_item.variant_id,
-                                                                    'name'     : line_item.title,
+                                                                    'item_name': line_item.title,
                                                                     'price'    : (line_item.price/100),
                                                                     'quantity' : line_item.quantity
                                                                 }
